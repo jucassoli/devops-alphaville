@@ -5,12 +5,14 @@ from pytest_mock import mocker
 
 
 def test_geohash_success():
-    assert handler.geohash(37.421542, -122.085589, b'2005-05-26-10458.68') == {'latitude': 37.857713, 'longitude': -122.544543}
+    assert handler.geohash(37.421542, -122.085589, b'2005-05-26-10458.68') == {
+        'latitude': 37.857713, 'longitude': -122.544543}
 
 
 def test_geohash_string():
     with pytest.raises(TypeError):
-        assert handler.geohash(37.421542, -122.085589, '2005-05-26-10458.68') is None
+        assert handler.geohash(37.421542, -122.085589,
+                               '2005-05-26-10458.68') is None
 
 
 def test_geohash_no_coord():
@@ -24,7 +26,7 @@ def test_geohash_no_date():
 
 
 def test_handler_invalid_url(mocker):
-    mocker.patch.object(handler, 'validate_url')
+    #mocker.patch.object(handler, 'validate_url')
     i = {
         "queryStringParameters": {
             "latitude": "37.421542",
@@ -36,7 +38,7 @@ def test_handler_invalid_url(mocker):
     body = {
         'errorMessage': "Error validating URL."
     }
-
+    url = 'https://www.google.com/maps/place\37.857713,-122.544543'
     r = {'statusCode': 500, 'body': json.dumps(body)}
     handler.validate_url.return_value = False
     assert handler.handler(i, '') == r
