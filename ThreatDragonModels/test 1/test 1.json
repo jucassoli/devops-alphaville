@@ -1,9 +1,18 @@
 {
   "summary": {
-    "title": "test 1"
+    "title": "test 1",
+    "owner": "juliano",
+    "description": "this is just a test"
   },
   "detail": {
     "contributors": [],
-    "diagrams": []
+    "diagrams": [
+      {
+        "title": "Diagram-test",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ],
+    "reviewer": "juliano"
   }
 }
